@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Electron boilerplate</title>
+        <link rel="stylesheet" href="index.css">
+    </head>
+    <body class="hover">
+        <script src="moment-with-locales.min.js"></script>
+        <h1 id="h1">x semanas, y dias</h1>
+        <button onclick="require('electron').remote.BrowserWindow.getAllWindows()[0].openDevTools();" style="position: fixed; top: 0; left: 0; -webkit-app-region: no-drag;">dev</button>
+        <button style="position: fixed; top: 0; right: 0; -webkit-app-region: no-drag;" onclick="const remote = require('electron').remote; remote.app.relaunch(); remote.app.exit(0);">reload</button>
+        <div class="corner bottom left"><span> </span></div>
+        <div class="corner bottom right"><span> </span></div>
+
+        <script>
+            var h1 = document.getElementById('h1');
+            var updateTime = function () {
+                var tempoFull = moment("20190617", "YYYYMMDD").diff(moment(), 'weeks', true);
+                var semanas = parseInt(tempoFull);
+                //var dias = ((tempoFull - semanas) * 7).toFixed(2);
+                var dias = Math.ceil((tempoFull - semanas) * 7);
+                h1.innerHTML = `
+                    ${semanas} semanas, <br>
+                    <span>${dias} dia${dias > 1 ? 's':''}</span>
+                `;
+                document.title = `${semanas} semanas, ${dias} dia${dias > 1 ? 's':''}`;
+            };
+            updateTime()
+            setInterval(updateTime,1000*60);
+
+            var mainWindow = require('electron').remote.getCurrentWindow();
+
+            mainWindow.on('focus', function (event) {document.body.classList.add('hover')});
+            mainWindow.on('blur', function (event) {document.body.classList.remove('hover')})
+
+            var resizeTimeout;
+            mainWindow.on('resize', (e)=>{
+                clearTimeout(resizeTimeout);
+                resizeTimeout = setTimeout(function(){
+                    var size = mainWindow.getSize();
+                    mainWindow.setSize(size[0], parseInt(size[0] * 0.3));
+                }, 100);
+            });
+
+        </script>
+    </body>
+</html>
