@@ -26,7 +26,8 @@ function createMainWindow() {
 		width: 400,
 		height: 120,
 		frame: false,
-        transparent: true
+        transparent: true,
+        skipTaskbar: true
 	});
 
 	win.loadURL(`file://${__dirname}/index.html`);

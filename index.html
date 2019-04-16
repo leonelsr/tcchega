@@ -16,7 +16,7 @@
         <script>
             var h1 = document.getElementById('h1');
             var updateTime = function () {
-                var tempoFull = moment("20190617", "YYYYMMDD").diff(moment(), 'weeks', true);
+                var tempoFull = moment("20190610", "YYYYMMDD").diff(moment(), 'weeks', true);
                 var semanas = parseInt(tempoFull);
                 //var dias = ((tempoFull - semanas) * 7).toFixed(2);
                 var dias = Math.ceil((tempoFull - semanas) * 7);
@@ -30,6 +30,8 @@
             setInterval(updateTime,1000*60);
 
             var mainWindow = require('electron').remote.getCurrentWindow();
+
+            mainWindow.blur();
 
             mainWindow.on('focus', function (event) {document.body.classList.add('hover')});
             mainWindow.on('blur', function (event) {document.body.classList.remove('hover')})
