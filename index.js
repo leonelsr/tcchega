@@ -26,6 +26,8 @@ function createMainWindow() {
 		width: 400,
 		height: 120,
 		frame: false,
+		x: 200,
+		y: 120,
         transparent: true,
         skipTaskbar: true
 	});
