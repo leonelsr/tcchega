@@ -1,0 +1,1 @@
+CreateObject("Wscript.Shell").Run "electron.cmd", 0, False
