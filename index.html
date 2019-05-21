@@ -30,11 +30,22 @@
             setInterval(updateTime,1000*60);
 
             var mainWindow = require('electron').remote.getCurrentWindow();
+            const { DisableMinimize } = require('electron-disable-minimize');
+
 
             mainWindow.blur();
 
             mainWindow.on('focus', function (event) {document.body.classList.add('hover')});
             mainWindow.on('blur', function (event) {document.body.classList.remove('hover')})
+
+            mainWindow.show();
+
+            // get the native HWND handle
+            let handle = mainWindow.getNativeWindowHandle();
+
+            // Disable Minimize Perfectly!
+            console.log('DisableMinimize', DisableMinimize(handle)); // boolean
+
 
             var resizeTimeout;
             mainWindow.on('resize', (e)=>{
