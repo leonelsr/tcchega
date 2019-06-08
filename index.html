@@ -32,7 +32,6 @@
             var mainWindow = require('electron').remote.getCurrentWindow();
             const { DisableMinimize } = require('electron-disable-minimize');
 
-
             mainWindow.blur();
 
             mainWindow.on('focus', function (event) {document.body.classList.add('hover')});
@@ -46,6 +45,12 @@
             // Disable Minimize Perfectly!
             console.log('DisableMinimize', DisableMinimize(handle)); // boolean
 
+            // mainWindow.on('minimize', function(event) {
+            //     mainWindow.restore();
+            //     mainWindow.once('restore', function (restoreEvent) {
+            //         mainWindow.blur();
+            //     });
+            // });
 
             var resizeTimeout;
             mainWindow.on('resize', (e)=>{

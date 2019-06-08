@@ -16,15 +16,16 @@
     "build": "electron-packager . --out=dist --asar --overwrite --all"
   },
   "dependencies": {
-    "ajv": "^5.0.0",
-    "electron-debug": "^2.0.0",
-    "electron-disable-minimize": "^1.0.0"
+    "ajv": "^5.5.2",
+    "electron-bottom-most": "^0.3.0",
+    "electron-debug": "^2.2.0",
+    "electron-disable-minimize": "git+https://github.com/leonelsr/electron-disable-minimize.git"
   },
   "devDependencies": {
     "devtron": "^1.4.0",
     "electron": "^2.0.2",
     "electron-packager": "^12.1.0",
-    "electron-rebuild": "^1.8.4",
+    "electron-rebuild": "^1.8.5",
     "xo": "^0.21.1"
   },
   "xo": {
